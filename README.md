@@ -1,3 +1,6 @@
+# Repository React Quizz App
+https://github.com/dientran97/react-quizz
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
