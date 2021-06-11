@@ -84,7 +84,7 @@ const Login = (props: LoginProps) => {
                         <input type='button' className='btn' onClick={handleLogin} value='Login' />
                         <div className='container'>
                             <input type="checkbox" checked name="remember" /> Remember me
-                        <div className="psw"><a href="#">Forgot password?</a></div>
+                            <div className="psw"><a href="/login">Forgot password?</a></div>
                         </div>
                     </div>
             }
