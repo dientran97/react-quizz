@@ -1,7 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Color as AlertColorType } from '@material-ui/lab';
+import { Alert, Color as AlertColorType } from '@material-ui/lab';
 import './index.css'
+import { Snackbar } from '@material-ui/core';
 
 interface LoginProps {
     onLogin: () => void;
@@ -41,6 +42,10 @@ const Login = (props: LoginProps) => {
         setStateSnackbar({ ...stateSnackbar, ...options, open: true });
     }
 
+    const hideSnackbar = () => {
+        setStateSnackbar({ ...stateSnackbar, open: false });
+    }
+
     const handleLogin = () => {
         if (isEmptyUserNamePassword()) {
             showSnackbar({ message: 'Username and password required.', type: 'error' })
@@ -72,23 +77,33 @@ const Login = (props: LoginProps) => {
     }
 
     return (
-        <div className='login'>
-            {
-                login === "true" ?
-                    <input type='button' className='btn' onClick={handleLogout} value='Logout' /> :
-                    <div className='login-form'>
-                        <label><b>Username</b></label>
-                        <input type='text' className='username' placeholder='Username' onChange={handleUserNameChange}></input>
-                        <label><b>Password</b></label>
-                        <input type='password' className='password' placeholder='Password' onChange={handlePasswordChange}></input>
-                        <input type='button' className='btn' onClick={handleLogin} value='Login' />
-                        <div className='container'>
-                            <input type="checkbox" checked name="remember" /> Remember me
-                            <div className="psw"><a href="/login">Forgot password?</a></div>
-                        </div>
-                    </div>
-            }
-        </div>
+        <>
+            <div className='login'>
+                {
+                    login === "true" ?
+                        <input type='button' className='btn' onClick={handleLogout} value='Logout' /> :
+                        <>
+                            <div className='login-form'>
+                                <label><b>Username</b></label>
+                                <input type='text' className='username' placeholder='Username' onChange={handleUserNameChange}></input>
+                                <label><b>Password</b></label>
+                                <input type='password' className='password' placeholder='Password' onChange={handlePasswordChange}></input>
+                                <input type='button' className='btn' onClick={handleLogin} value='Login' />
+                                <div className='container'>
+                                    <input type="checkbox" checked name="remember" /> Remember me
+                                    <div className="psw"><a href="/login">Forgot password?</a></div>
+                                </div>
+                            </div>
+                        </>
+                }
+            </div>
+
+            <Snackbar open={stateSnackbar.open} autoHideDuration={stateSnackbar.duration} onClose={hideSnackbar}>
+                <Alert onClose={hideSnackbar} severity={stateSnackbar.type}>
+                    {stateSnackbar.message}
+                </Alert>
+            </Snackbar>
+        </>
     )
 }
 
