@@ -7,4 +7,38 @@
 
     text-decoration: none;
     cursor: pointer;
+    width: 100%;
+}
+
+.login {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.username,
+.password {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.psw {
+    float: right;
+    display: flex;
+}
+.container {
+    padding-top: 16px;
 }
