@@ -18,13 +18,13 @@ const QuestionCard: React.FC<Props> = ({
     questionNr,
     totalQuestions,
 }) => {
-    const choiceKeyQuiz = () => {
-        const keyList = [];
-        for (const key in choices) {
-            keyList.push(choices[key])
-        }
-        return keyList
-    }
+    // const choiceKeyQuiz = () => {
+    //     const keyList = [];
+    //     for (const key in choices) {
+    //         keyList.push(choices[key])
+    //     }
+    //     return keyList
+    // }
 
     const choiceValueQuiz = () => {
         const valueList = []
@@ -34,7 +34,7 @@ const QuestionCard: React.FC<Props> = ({
         return valueList
     }
 
-    const choiceKeyList: string[] = choiceKeyQuiz();
+    // const choiceKeyList: string[] = choiceKeyQuiz();
     const choiceValueList: string[] = choiceValueQuiz();
 
     return (
