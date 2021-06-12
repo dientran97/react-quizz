@@ -12,16 +12,21 @@ interface QuizQuestion {
 }
 
 export type AnswerObject = {
-    question: String;
+    id: number;
     answer: String;
 };
+
+type listAnswerObject = {
+    listAnswer: AnswerObject[]
+}
 
 const Quiz: React.FC = () => {
     const [questions, setQuestions] = useState<QuizQuestion[]>([])
     const [number, setNumber] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
+    const [answers, setAnswers] = useState<listAnswerObject>({ listAnswer: [] });
     const [gameOver, setGameOver] = useState(false);
+    const [submit, setSubmit] = useState(false);
     const totalQuestion = questions.length
 
     useEffect(() => {
@@ -43,10 +48,22 @@ const Quiz: React.FC = () => {
             const answer = e.currentTarget.value;
             // Save the answer in the array for user answers
             const answerObject = {
-                question: questions[number].question,
+                id: questions[number].id,
                 answer,
             };
-            setUserAnswers((prev) => [...prev, answerObject]);
+            const prevAnswers: listAnswerObject = answers;
+            if (prevAnswers.listAnswer.find(answer => answer.id === answerObject.id)) {
+                prevAnswers.listAnswer.forEach(prev => {
+                    if (prev.id === answerObject.id) {
+                        prev.answer = answerObject.answer
+                    }
+                })
+            }
+            else {
+                prevAnswers.listAnswer.push(answerObject)
+            }
+            setAnswers(prevAnswers);
+            console.log(answers);
         }
     };
 
@@ -60,19 +77,35 @@ const Quiz: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        async function postAnswer() {
+            await axios.post('https://react14-contest-easy-quiz-app.herokuapp.com/quiz/answer', answers)
+                .then((response: AxiosResponse) => {
+                    console.log(response.data.result);
+                });
+        }
+        postAnswer()
+    }, [submit])
+
+    const submitAnswers = () => {
+        setSubmit(true)
+    }
+
     return (
         <>
             <h1>REACT QUIZ</h1>
             {loading ? <p>Loading Questions...</p> : null}
             {!loading ? (
-                <QuestionCard
-                    questionNr={number + 1}
-                    totalQuestions={totalQuestion}
-                    question={questions[number].question}
-                    choices={questions[number].choices}
-                    userAnswer={userAnswers ? userAnswers[number] : undefined}
-                    callback={checkAnswer}
-                />
+                <>
+                    <QuestionCard
+                        questionNr={number + 1}
+                        totalQuestions={totalQuestion}
+                        question={questions[number].question}
+                        choices={questions[number].choices}
+                        callback={checkAnswer}
+                    />
+                    <button className='submit' onClick={submitAnswers}>Submit</button>
+                </>
             ) : null}
             {!loading && !gameOver && number !== totalQuestion - 1 ? (
                 <button className='next' onClick={nextQuestion}>

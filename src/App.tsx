@@ -41,7 +41,7 @@ const App = () => {
               <Link to="/quiz" style={navLinkStyle}>Quiz</Link>
             </li>
             <li>
-              <Link to="/view-result" style={navLinkStyle}>View Result</Link>
+              <Link to="/view-result" style={navLinkStyle}>Result</Link>
             </li>
           </ul>
           <div className="login-button">

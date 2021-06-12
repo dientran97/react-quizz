@@ -1,12 +1,9 @@
 import React from 'react';
-// Types
-import { AnswerObject } from '../../views/quiz';
 
 type Props = {
     question: String;
     choices: string[];
     callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    userAnswer: AnswerObject | undefined;
     questionNr: number;
     totalQuestions: number;
 };
@@ -18,13 +15,13 @@ const QuestionCard: React.FC<Props> = ({
     questionNr,
     totalQuestions,
 }) => {
-    // const choiceKeyQuiz = () => {
-    //     const keyList = [];
-    //     for (const key in choices) {
-    //         keyList.push(choices[key])
-    //     }
-    //     return keyList
-    // }
+    const choiceKeyQuiz = () => {
+        const keyList = [];
+        for (const key in choices) {
+            keyList.push(key)
+        }
+        return keyList
+    }
 
     const choiceValueQuiz = () => {
         const valueList = []
@@ -34,7 +31,7 @@ const QuestionCard: React.FC<Props> = ({
         return valueList
     }
 
-    // const choiceKeyList: string[] = choiceKeyQuiz();
+    const choiceKeyList: string[] = choiceKeyQuiz();
     const choiceValueList: string[] = choiceValueQuiz();
 
     return (
@@ -45,10 +42,10 @@ const QuestionCard: React.FC<Props> = ({
             <p >{question}</p>
             <ul>
                 {
-                    choiceValueList.map((choice) => (
+                    choiceKeyList.map((choice, index) => (
                         <li key={choice}>
                             <button onClick={callback} value={choice}>
-                                <span >{choice}</span>
+                                <span >{choiceValueList[index]}</span>
                             </button>
                         </li>))
                 }
