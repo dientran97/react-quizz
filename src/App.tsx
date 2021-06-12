@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import './App.css';
-import logo from './logo.svg';
+import logo from './logo.png';
 import Quiz from './views/quiz';
 import ViewResult from './views/result';
 import Login from './views/login';
