@@ -66,7 +66,6 @@ const Quiz: React.FC = () => {
             {loading ? <p>Loading Questions...</p> : null}
             {!loading ? (
                 <QuestionCard
-                    id={questions[number].id}
                     questionNr={number + 1}
                     totalQuestions={totalQuestion}
                     question={questions[number].question}

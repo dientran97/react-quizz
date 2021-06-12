@@ -3,7 +3,6 @@ import React from 'react';
 import { AnswerObject } from '../../views/quiz';
 
 type Props = {
-    id: number
     question: String;
     choices: string[];
     callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -13,7 +12,6 @@ type Props = {
 };
 
 const QuestionCard: React.FC<Props> = ({
-    id,
     question,
     choices,
     callback,
