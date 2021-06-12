@@ -3,15 +3,13 @@ import { Redirect, Route, RouteProps } from 'react-router-dom';
 
 export interface ProtectedRouteProps extends RouteProps {
     isAuthenticated: boolean;
-    authenticationPath: string;
+    redirectPath: string;
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = props => {
-    let redirectPath = '';
 
     if (!props.isAuthenticated) {
-        redirectPath = props.authenticationPath;
-        return <Redirect to={redirectPath} />;
+        return <Redirect to={props.redirectPath} />;
     }
     else {
         return <Route {...props} />;

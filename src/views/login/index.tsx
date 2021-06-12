@@ -1,12 +1,11 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import { Alert, Color as AlertColorType } from '@material-ui/lab';
 import './index.css'
 import { Snackbar } from '@material-ui/core';
 
 interface LoginProps {
-    onLogin: () => void;
-    onLogout: () => void;
+    onLogin: (userName: any) => void;
     login: String | null;
 }
 
@@ -19,7 +18,7 @@ interface SnackbarOptions {
 
 const Login = (props: LoginProps) => {
     let history = useHistory()
-    const { onLogin, login, onLogout } = props;
+    const { onLogin, login } = props;
     const [userName, setUserName] = React.useState<string>('');
     const [password, setPassword] = React.useState<string>('');
 
@@ -55,17 +54,12 @@ const Login = (props: LoginProps) => {
         if (userName === 'admin' && password === 'admin') {
             showSnackbar({ message: 'Login successfully, redirecting to dashboard.', type: 'success' })
             localStorage.setItem('accessToken', 'true')
+            localStorage.setItem('userName', userName)
             history.replace('/')
-            onLogin();
+            onLogin(userName);
             return
         }
         showSnackbar({ message: 'Username or password is incorrect.', type: 'error' })
-    }
-
-    const handleLogout = () => {
-        localStorage.removeItem('accessToken')
-        history.replace('/login')
-        onLogout()
     }
 
     const handleUserNameChange = (e: any) => {
@@ -81,7 +75,7 @@ const Login = (props: LoginProps) => {
             <div className='login'>
                 {
                     login === "true" ?
-                        <input type='button' className='btn' onClick={handleLogout} value='Logout' /> :
+                        <Redirect to='/' /> :
                         <>
                             <div className='login-form'>
                                 <label><b>Username</b></label>
@@ -90,7 +84,7 @@ const Login = (props: LoginProps) => {
                                 <input type='password' className='password' placeholder='Password' onChange={handlePasswordChange}></input>
                                 <input type='button' className='btn' onClick={handleLogin} value='Login' />
                                 <div className='container'>
-                                    <input type="checkbox" checked name="remember" /> Remember me
+                                    <input type="checkbox" name="remember" /> Remember me
                                     <div className="psw"><a href="/login">Forgot password?</a></div>
                                 </div>
                             </div>

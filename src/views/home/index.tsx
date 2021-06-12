@@ -1,10 +1,28 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+
+import './index.css'
 
 const Home = () => {
+    const history = useHistory()
+    const navLogin = () => { history.replace('/login') }
+    const navQuiz = () => { history.replace('/quiz') }
+
     return (
         <>
-            <h2>Home</h2>
-            {localStorage.getItem('accessToken') ? null : <h3>Please login!!!</h3>}
+            <h1>Welcome To React Quiz</h1>
+            <div className='home-content'>
+                {localStorage.getItem('accessToken') ?
+                    <div>
+                        <h3>Are you ready?</h3>
+                        <button className='btn' onClick={navQuiz}>Start Quiz</button>
+                    </div> :
+                    <div>
+                        <h3>Please login to start Quiz!!!</h3>
+                        <button className='btn' onClick={navLogin}>Go To Login</button>
+                    </div>
+                }
+            </div>
         </>
     )
 }

@@ -1,0 +1,14 @@
+.home-content {
+    justify-content: space-around;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    padding-top: 10px;
+    text-align: center;
+}
