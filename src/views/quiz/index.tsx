@@ -22,9 +22,6 @@ const Quiz: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
     const [gameOver, setGameOver] = useState(false);
-
-    const [choiceKey, setChoiceKey] = useState<string[]>([])
-    const [choiceValue, setChoiceValue] = useState<string[]>([])
     const totalQuestion = questions.length
 
     useEffect(() => {
