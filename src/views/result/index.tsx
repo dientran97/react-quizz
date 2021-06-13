@@ -11,7 +11,7 @@ const ViewResult = () => {
             <div className='content'>
                 {RESULT.submited ?
                     <>
-                        <h3>{RESULT.incorrectAnswers.length}/{RESULT.totalQuestion}</h3>
+                        <h3>{RESULT.totalQuestion - RESULT.incorrectAnswers.length}/{RESULT.totalQuestion}</h3>
                     </>
                     :
                     <div>
