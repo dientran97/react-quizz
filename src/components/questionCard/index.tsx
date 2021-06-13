@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css'
 
 type Props = {
     question: String;
@@ -44,7 +45,7 @@ const QuestionCard: React.FC<Props> = ({
                 {
                     choiceKeyList.map((choice, index) => (
                         <li key={choice}>
-                            <button onClick={callback} value={choice}>
+                            <button className='choice' onClick={callback} value={choice}>
                                 <span >{choiceValueList[index]}</span>
                             </button>
                         </li>))

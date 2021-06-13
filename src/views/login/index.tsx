@@ -4,6 +4,8 @@ import { Alert, Color as AlertColorType } from '@material-ui/lab';
 import './index.css'
 import { Snackbar } from '@material-ui/core';
 
+import logo from '../../logo.png';
+
 interface LoginProps {
     onLogin: (userName: any) => void;
     login: String | null;
@@ -78,9 +80,13 @@ const Login = (props: LoginProps) => {
                         <Redirect to='/' /> :
                         <>
                             <div className='login-form'>
-                                <label><b>Username</b></label>
+                                <div>
+                                    <img src={logo} className='logo' alt='logo' height='200px' width='200px' />
+                                    <h1 className='app-name'>QUIZ APP</h1>
+                                </div>
+                                <label>Username</label>
                                 <input type='text' className='username' placeholder='Username' onChange={handleUserNameChange}></input>
-                                <label><b>Password</b></label>
+                                <label>Password</label>
                                 <input type='password' className='password' placeholder='Password' onChange={handlePasswordChange}></input>
                                 <input type='button' className='btn' onClick={handleLogin} value='Login' />
                                 <div className='container'>

@@ -9,6 +9,8 @@
     text-decoration: none;
     cursor: pointer;
     width: 100%;
+
+    margin-top: 10px;
 }
 
 .login {
@@ -42,4 +44,15 @@
 }
 .container {
     padding-top: 16px;
+}
+
+.logo {
+    margin-right: 0;
+}
+
+.app-name {
+    display: flex;
+    float: right;
+    padding-top: 50px;
+    padding-right: 200px;
 }

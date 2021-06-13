@@ -11,10 +11,10 @@ const Home = () => {
     return (
         <>
             <h1>Welcome To React Quiz</h1>
-            <div className='home-content'>
+            <div className='content'>
                 {localStorage.getItem('accessToken') ?
                     <div>
-                        <h3>Are you ready?</h3>
+                        <h3>Are you ready for challenge?</h3>
                         <button className='btn' onClick={navQuiz}>Start Quiz</button>
                     </div> :
                     <div>

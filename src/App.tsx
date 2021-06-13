@@ -37,12 +37,17 @@ const App = () => {
             <li>
               <Link to="/" style={navLinkStyle}>Home</Link>
             </li>
-            <li>
-              <Link to="/quiz" style={navLinkStyle}>Quiz</Link>
-            </li>
-            <li>
-              <Link to="/view-result" style={navLinkStyle}>Result</Link>
-            </li>
+            {
+              login === 'true' ?
+                <>
+                  <li>
+                    <Link to="/quiz" style={navLinkStyle}>Quiz</Link>
+                  </li>
+                  <li>
+                    <Link to="/view-result" style={navLinkStyle}>Result</Link>
+                  </li>
+                </> : null
+            }
           </ul>
           <div className="login-button">
             {
