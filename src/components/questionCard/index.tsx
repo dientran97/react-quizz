@@ -1,5 +1,8 @@
 import React from 'react';
 import './index.css'
+import { AnswerObject } from '../../views/quiz'
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 type Props = {
     question: String;
@@ -7,6 +10,7 @@ type Props = {
     callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
     questionNr: number;
     totalQuestions: number;
+    answers: AnswerObject[]
 };
 
 const QuestionCard: React.FC<Props> = ({
@@ -15,7 +19,9 @@ const QuestionCard: React.FC<Props> = ({
     callback,
     questionNr,
     totalQuestions,
+    answers
 }) => {
+    const [clicked, setClicked] = useState(false)
     const choiceKeyQuiz = () => {
         const keyList = [];
         for (const key in choices) {
@@ -23,6 +29,9 @@ const QuestionCard: React.FC<Props> = ({
         }
         return keyList
     }
+    useEffect(() => {
+        setClicked(false)
+    }, [clicked])
 
     const choiceValueQuiz = () => {
         const valueList = []
@@ -30,6 +39,11 @@ const QuestionCard: React.FC<Props> = ({
             valueList.push(choices[key])
         }
         return valueList
+    }
+
+    const handleOnClick = (e: any) => {
+        setClicked(true)
+        callback(e)
     }
 
     const choiceKeyList: string[] = choiceKeyQuiz();
@@ -45,7 +59,11 @@ const QuestionCard: React.FC<Props> = ({
                 {
                     choiceKeyList.map((choice, index) => (
                         <li key={choice}>
-                            <button className='choice' onClick={callback} value={choice}>
+                            <button className={answers.find(answer => answer.id === questionNr && answer.choice === choice) ?
+                                'choice btn clicked' :
+                                'choice btn'}
+                                onClick={handleOnClick}
+                                value={choice}>
                                 <span >{choiceValueList[index]}</span>
                             </button>
                         </li>))

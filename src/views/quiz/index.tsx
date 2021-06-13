@@ -18,7 +18,7 @@ export type AnswerObject = {
     choice: String;
 };
 
-type listAnswerObject = {
+export type listAnswerObject = {
     listAnswer: AnswerObject[]
 }
 
@@ -123,6 +123,7 @@ const Quiz: React.FC = () => {
                             question={questions[number].question}
                             choices={questions[number].choices}
                             callback={checkAnswer}
+                            answers={answers.listAnswer}
                         />
                     </>
                 ) : !loading && submit ?
@@ -132,7 +133,7 @@ const Quiz: React.FC = () => {
                         <button className='btn' onClick={tryAgain}>Try again</button>
                     </div> : null}
                 {!loading && !submit && number !== 0 ? (
-                    <button className='btn next' onClick={prevQuestion}>
+                    <button className='btn prev' onClick={prevQuestion}>
                         Prev Question
                     </button>
                 ) : null}
