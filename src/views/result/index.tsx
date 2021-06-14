@@ -12,11 +12,11 @@ const ViewResult = () => {
     }
     return (
         <>
-            <h1>Your Result</h1>
             <div className='content'>
                 {RESULT.submited ?
                     <>
-                        <h3>{RESULT.totalQuestion - RESULT.incorrectAnswers.length}/{RESULT.totalQuestion}</h3>
+                        <h1>Your Result</h1>
+                        <h2>{RESULT.totalQuestion - RESULT.incorrectAnswers.length}/{RESULT.totalQuestion}</h2>
                         <button className='btn' onClick={tryAgain}>Try again</button>
                     </>
                     :

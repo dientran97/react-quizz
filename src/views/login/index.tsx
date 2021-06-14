@@ -4,7 +4,7 @@ import { Alert, Color as AlertColorType } from '@material-ui/lab';
 import './index.css'
 import { Snackbar } from '@material-ui/core';
 
-import logo from '../../logo.png';
+import logo from '../../images/logo.png';
 
 interface LoginProps {
     onLogin: (userName: any) => void;
@@ -88,7 +88,7 @@ const Login = (props: LoginProps) => {
                                 <input type='text' className='username' placeholder='Username' onChange={handleUserNameChange}></input>
                                 <label>Password</label>
                                 <input type='password' className='password' placeholder='Password' onChange={handlePasswordChange}></input>
-                                <input type='button' className='btn' onClick={handleLogin} value='Login' />
+                                <input type='button' className='btn login-btn' onClick={handleLogin} value='Login' />
                                 <div className='container'>
                                     <input type="checkbox" name="remember" /> Remember me
                                     <div className="psw"><a href="/login">Forgot password?</a></div>

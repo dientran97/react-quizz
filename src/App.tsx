@@ -1,7 +1,9 @@
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Switch, Route, Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
 import './App.css';
-import logo from './logo.png';
+import logo from './images/logo.png';
+import error404 from './images/404.png'
+
 import Quiz from './views/quiz';
 import ViewResult from './views/result';
 import Login from './views/login';
@@ -9,6 +11,7 @@ import Home from './views/home';
 import ProtectedRoute from './components/protected-route';
 
 const App = () => {
+  const [redirect, setRedirect] = useState(false)
   const navLinkStyle = { color: 'white' }
   const [login, setLogin] = useState(localStorage.getItem('accessToken'))
   const [user, setUser] = useState(localStorage.getItem('userName'))
@@ -22,6 +25,17 @@ const App = () => {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('userName')
     setLogin("false")
+  }
+
+  const backHome = () => {
+    setRedirect(true)
+    renderRedirect()
+  }
+
+  const renderRedirect = () => {
+    if (redirect) {
+      return <Redirect to='/' />
+    }
   }
 
   return (
@@ -71,7 +85,12 @@ const App = () => {
             <Home />
           </Route>
           <Route path="*">
-            <h2>Error page</h2>
+            <div className='content'>
+              <img src={error404} className='error-logo' alt='logo' />
+              <h3>Sorry, you have accessed a non-existing route.</h3>
+              <button className='btn' onClick={backHome} >Back Home</button>
+              {renderRedirect()}
+            </div>
           </Route>
         </Switch>
       </Router>

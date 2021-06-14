@@ -21,3 +21,8 @@
   width: 50%;
   list-style: none;
 }
+
+.error-logo {
+  height: 30vmin;
+  pointer-events: none;
+}

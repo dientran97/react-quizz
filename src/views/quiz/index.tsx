@@ -129,19 +129,28 @@ const Quiz: React.FC = () => {
                 ) : !loading && submit ?
                     <div>
                         <h3>You have finished the challenge!!!</h3>
-                        <button className='btn' onClick={navResult}>View your result</button>
-                        <button className='btn' onClick={tryAgain}>Try again</button>
+                        <button className='btn view-result' onClick={navResult}>View your result</button>
+                        <button className='btn try-again' onClick={tryAgain}>Try again</button>
                     </div> : null}
+
                 {!loading && !submit && number !== 0 ? (
                     <button className='btn prev' onClick={prevQuestion}>
-                        Prev Question
+                        &laquo; Previous Question
                     </button>
-                ) : null}
+                ) : !loading && !submit ?
+                    <button className='btn prev disabled' disabled>
+                        &laquo; Previous Question
+                    </button> : null}
+
                 {!loading && !submit && number !== RESULT.totalQuestion - 1 ? (
                     <button className='btn next' onClick={nextQuestion}>
-                        Next Question
+                        Next Question &raquo;
                     </button>
-                ) : null}
+                ) : !loading && !submit ?
+                    <button className='btn next disabled' disabled>
+                        Next Question &raquo;
+                    </button> : null}
+
                 {!loading && !submit ? <button className='btn submit' onClick={submitAnswers}>Submit</button> : null}
             </div>
         </>

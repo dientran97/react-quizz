@@ -1,5 +1,4 @@
 .content {
-    background: #72d5e9;
     justify-content: space-around;
     align-items: center;
     text-align: center;
@@ -10,9 +9,33 @@
     transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 5px;
+    max-width: 45vmin;
+    min-width: 40vmin;
 }
 
 h1 {
     padding-top: 10px;
     text-align: center;
+}
+
+.btn.prev,
+.btn.next,
+.view-result,
+.try-again {
+    width: 18vmin;
+    padding: 16px 20px;
+}
+
+.prev,
+.view-result {
+    float: left;
+}
+
+.next,
+.try-again {
+    float: right;
+}
+
+.btn.disabled {
+    background-color: gray;
 }
